@@ -19,6 +19,6 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
 
-    testImplementation "io.ktor:ktor-server-test-host:$ktorVersion"
-    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
