@@ -9,16 +9,32 @@ repositories {
     mavenCentral()
 }
 
-var ktorVersion = "2.0.0-beta-1"
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
+
+val ktor_version = "1.6.7"
+val koin_version = "3.1.5"
+val kotest_version = "5.1.0"
+val prometheus_version = "1.8.3"
 
 dependencies {
     implementation(kotlin("stdlib"))
 
-    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-status-pages-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("io.ktor:ktor-metrics-micrometer:$ktor_version")
+    implementation("io.insert-koin:koin-core:$koin_version")
+    implementation("io.insert-koin:koin-ktor:$koin_version")
+    implementation("io.micrometer:micrometer-registry-prometheus:$prometheus_version")
 
-    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    testImplementation("io.mockk:mockk:1.12.2")
+    testImplementation("io.insert-koin:koin-test:$koin_version")
+    testImplementation("io.ktor:ktor-client-mock:$ktor_version")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("io.kotest:kotest-assertions-core:$kotest_version")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotest_version")
 }
