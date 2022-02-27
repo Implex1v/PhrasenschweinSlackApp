@@ -1,4 +1,5 @@
 plugins {
+    jacoco
     application
     kotlin("jvm") version "1.6.10"
 }
@@ -12,6 +13,19 @@ repositories {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+    }
 }
 
 application {
