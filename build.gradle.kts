@@ -1,4 +1,5 @@
 plugins {
+    application
     kotlin("jvm") version "1.6.10"
 }
 
@@ -11,6 +12,10 @@ repositories {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 val ktor_version = "1.6.7"
