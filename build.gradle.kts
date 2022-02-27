@@ -60,6 +60,7 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:$koin_version")
     testImplementation("io.ktor:ktor-client-mock:$ktor_version")
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
-    testImplementation("io.kotest:kotest-assertions-core:$kotest_version")
     testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotest_version")
+    testImplementation("io.kotest:kotest-assertions-core:$kotest_version")
+    testImplementation("io.kotest.extensions:kotest-extensions-koin:1.1.0")
 }
