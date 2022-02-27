@@ -17,6 +17,9 @@ val ktor_version = "1.6.7"
 val koin_version = "3.1.5"
 val kotest_version = "5.1.0"
 val prometheus_version = "1.8.3"
+val logback_version = "1.2.10"
+val logback_contribution = "0.1.5"
+val jackson_version = "2.13.1"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -29,7 +32,10 @@ dependencies {
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.micrometer:micrometer-registry-prometheus:$prometheus_version")
-
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("ch.qos.logback.contrib:logback-jackson:$logback_contribution")
+    implementation("ch.qos.logback.contrib:logback-json-classic:$logback_contribution")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jackson_version")
 
     testImplementation("io.mockk:mockk:1.12.2")
     testImplementation("io.insert-koin:koin-test:$koin_version")
