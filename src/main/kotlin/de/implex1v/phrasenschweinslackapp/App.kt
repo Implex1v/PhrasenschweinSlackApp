@@ -4,6 +4,7 @@ import de.implex1v.phrasenschweinslackapp.client.BaseClient
 import de.implex1v.phrasenschweinslackapp.client.Client
 import de.implex1v.phrasenschweinslackapp.config.AppSettings
 import de.implex1v.phrasenschweinslackapp.config.EnvironmentAppSettings
+import de.implex1v.phrasenschweinslackapp.metrics.OnMessageMetric
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -19,7 +20,6 @@ import io.micrometer.prometheus.PrometheusMeterRegistry
 import org.koin.dsl.module
 import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.getKoin
-import org.koin.ktor.ext.modules
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -32,6 +32,10 @@ fun Application.module() {
 
     if(config.metricsEnabled) {
         enableMetrics()
+    }
+
+    routing {
+        v1()
     }
 }
 
@@ -52,6 +56,7 @@ fun Application.enableMetrics() {
         listOf(
             module  {
                 single { micrometerRegistry as MeterRegistry }
+                single { OnMessageMetric() }
             }
         )
     )
