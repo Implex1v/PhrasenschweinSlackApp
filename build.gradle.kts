@@ -2,6 +2,7 @@ plugins {
     jacoco
     application
     kotlin("jvm") version "1.6.10"
+    id("org.sonarqube") version "3.3"
 }
 
 group = "de.implex1v"
@@ -25,6 +26,15 @@ tasks.jacocoTestReport {
     reports {
         xml.required.set(true)
         csv.required.set(false)
+    }
+}
+
+sonarqube {
+    properties {
+        property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.sources", "src")
+        property("sonar.projectKey", "implex1v_PhrasenschweinSlackApp")
+        property("sonar.login", System.getProperty("sonar.login") ?: System.getenv("SONAR_TOKEN")!!)
     }
 }
 

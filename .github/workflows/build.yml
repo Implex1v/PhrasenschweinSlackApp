@@ -16,5 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: docker build
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: |
           docker-compose build phrasenschwein-app
