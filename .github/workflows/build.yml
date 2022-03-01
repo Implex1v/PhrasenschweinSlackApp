@@ -19,4 +19,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
         run: |
-          docker-compose build phrasenschwein-app
+          docker-compose build phrasenschwein-app --build-arg sonar_token=$SONAR_TOKEN
