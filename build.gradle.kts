@@ -32,8 +32,8 @@ tasks.jacocoTestReport {
 sonarqube {
     properties {
         property("sonar.sourceEncoding", "UTF-8")
-        property("sonar.sources", "src")
-        property("sonar.projectKey", "implex1v_PhrasenschweinSlackApp")
+        property("sonar.organization", "implex1v")
+        property("sonar.projectKey", "Implex1v_PhrasenschweinSlackApp")
         property("sonar.login", System.getProperty("sonar.login") ?: System.getenv("SONAR_TOKEN")!!)
     }
 }

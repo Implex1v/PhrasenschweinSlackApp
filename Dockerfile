@@ -4,7 +4,7 @@ WORKDIR /app
 FROM base AS build
 
 COPY ./ /app
-RUN ./gradlew build installDist
+RUN ./gradlew build sonarqube installDist
 
 FROM base AS release
 COPY --from=build /app/build/install/phrasenschwein-slack-app .
