@@ -9,8 +9,6 @@ RUN ./gradlew build sonarqube installDist -psonar.login=${SONAR_TOKEN}
 
 FROM base AS release
 COPY --from=build /app/build/install/phrasenschwein-slack-app .
-
-
 ENV APP_ENABLE_METRICS true
 
 EXPOSE 5000
