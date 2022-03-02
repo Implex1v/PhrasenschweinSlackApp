@@ -45,6 +45,11 @@ val appModule = module {
     single { EnvironmentAppSettings() as AppSettings }
 }
 
+fun getMetricsModule(registry: MeterRegistry) = module {
+    single { registry as MeterRegistry }
+    single { OnMessageMetric() }
+}
+
 fun Application.enableMetrics() {
     val micrometerRegistry = PrometheusMeterRegistry(PrometheusConfig.DEFAULT)
 
@@ -53,12 +58,7 @@ fun Application.enableMetrics() {
     }
 
     getKoin().loadModules(
-        listOf(
-            module  {
-                single { micrometerRegistry as MeterRegistry }
-                single { OnMessageMetric() }
-            }
-        )
+        listOf(getMetricsModule(micrometerRegistry))
     )
 
     routing {
