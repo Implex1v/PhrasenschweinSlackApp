@@ -5,7 +5,7 @@ FROM base AS build
 ARG sonar_token=unset
 
 COPY ./ /app
-RUN ./gradlew -psonar.login=${SONAR_TOKEN} build sonarqube installDist
+RUN ./gradlew -Dsonar.login=${SONAR_TOKEN} build sonarqube installDist
 
 FROM base AS release
 COPY --from=build /app/build/install/phrasenschwein-slack-app .
