@@ -31,6 +31,7 @@ tasks.jacocoTestReport {
 
 sonarqube {
     properties {
+        property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.sourceEncoding", "UTF-8")
         property("sonar.organization", "implex1v")
         property("sonar.projectKey", "Implex1v_PhrasenschweinSlackApp")
